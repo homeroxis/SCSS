@@ -1,0 +1,48 @@
+@mixin border-radius($property) {
+	-webkit-border-radius: $property;
+	-moz-border-radius: $property;
+	border-radius: $property;
+}
+
+@mixin bor-test($width,$pigment,$style:solid) {
+	border-style: $style;
+	border-width: $width  ;
+	border-color: $pigment;
+}
+
+@mixin box-sizing($border) {
+	-webkit-box-sizing: $border;
+	-moz-box-sizing: $border;
+	box-sizing: $border;
+}
+
+@mixin text-shadow($dist:1px,$blur:1px,$opacity) {
+	text-shadow: $dist $dist $blur rgba(0, 0, 0, $opacity);
+}
+
+@mixin box-shadow($dist:1px,$blur:1px,$opacity) {
+	-webkit-box-shadow: $dist $dist $blur rgba(0, 0, 0, $opacity);
+	-moz-box-shadow: $dist $dist $blur rgba(0, 0, 0, $opacity);
+	box-shadow: $dist $dist $blur rgba(0, 0, 0, $opacity);
+}
+
+@mixin enlace($colors...){
+	@if $links {
+		a{
+			text-decoration: none;
+			font-weight: bold; 
+			color: map-get($colours, nth($colors,1));
+
+			&:hover{
+				text-decoration: underline;
+			}
+			@if length($colors) > 1 {
+				@for $i from 2 through length($colors) {
+					&.#{nth($colors,$i)}{
+						color: map-get($colours, nth($colors,$i));
+					}
+				}
+			}
+		}
+	}
+}
